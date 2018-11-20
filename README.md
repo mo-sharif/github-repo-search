@@ -1,4 +1,7 @@
 # GitSearch
+Search GitHub repositories and filter results.
+
+[Check out live demo](https://mosh-media.github.io/github-repo-search/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
 
