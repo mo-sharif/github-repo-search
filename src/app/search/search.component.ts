@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { GithubSearchService } from './service/github-search.service';
+import { RepoData } from './module/repo-data'
 
 @Component({
   selector: 'app-search',
@@ -9,26 +11,21 @@ import { GithubSearchService } from './service/github-search.service';
 export class SearchComponent implements OnInit {
 
   repo: string;      // binds repo input field
-  search_repos: any; // stores search repositories data
-  username: string;  // binds username input field
-  user_profile: any; // stores github user api data
-  repo_list: any;    // stores github user's repo data
-  dataSource: any;
-  displayedColumns= ["seqNo", "stars", "license", "forks"];
+  dataSource: MatTableDataSource<RepoData>;
 
-  constructor(public githubSearchService: GithubSearchService) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
-  }
+  displayedColumns= ["name", "stars", "license", "forks"];
+
+  constructor(public githubSearchService: GithubSearchService) {}
+  ngOnInit() {}
 
   getRepo() {
-    if (this.repo === '') {
-      this.search_repos = false;
-    }
     this.githubSearchService.searchRepo(this.repo).subscribe(data => {
-      this.search_repos = data['items'] ;
-      this.dataSource = data['items'];
-       console.log(this.search_repos);
+      console.log(data['items'])
+      this.dataSource = new MatTableDataSource(data['items']);
+      this.dataSource.sort = this.sort;
     });
   } // getRepo() ends
 }

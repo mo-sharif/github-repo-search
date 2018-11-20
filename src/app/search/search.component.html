@@ -14,50 +14,15 @@
     </div>
   </div>
 
-  <div *ngIf="search_repos">
+  <div *ngIf="this.dataSource">
     <div class="mt-3">
-      <div *ngFor="let repos of search_repos">
-        <div class="card mb-3">
-          <!-- card-header -->
-          <div class="card-header">
-            {{ repos.full_name }}
-          </div>
-          <!-- card-body -->
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-12">
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <strong>Created by: </strong>{{ repos.owner.login }}
-                  </li>
-                  <li class="list-group-item">
-                    <strong>Last updated at: </strong>{{ repos.updated_at | date:'mediumDate' }}
-                  </li>
-                  <li class="list-group-item">
-                    <a href="{{ repos.owner.html_url }}" target="_blank">User Profile</a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="{{ repos.html_url }}">Repo Link</a>
-                  </li>
-                  <li class="list-group-item">
-                    <strong>Forks: </strong>{{ repos.forks }}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div><!-- /.card-body -->
-
-        </div><!-- /.card -->
-      </div><!--  *ngFor -->
-    </div><!-- /.col-sm-12 -->
-    <div class="table-container mat-elevation-z8">
-
+      <div class="table-container mat-elevation-z8">
         <mat-table [dataSource]="dataSource" matSort>
 
-          <!-- seqNo Column -->
-          <ng-container matColumnDef="seqNo">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
-            <mat-cell *matCellDef="let repo"> {{repo.id}} </mat-cell>
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let repo"> <a href="{{repo.html_url}} ">{{repo.name}}</a></mat-cell>
           </ng-container>
 
           <!-- Stars Column -->
@@ -88,3 +53,5 @@
 
   </div><!-- *ngIf="search_repos" -->
 </div>
+
+</div><!-- /.col-sm-12 -->
