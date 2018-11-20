@@ -13,6 +13,8 @@ export class SearchComponent implements OnInit {
   username: string;  // binds username input field
   user_profile: any; // stores github user api data
   repo_list: any;    // stores github user's repo data
+  dataSource: any;
+  displayedColumns= ["seqNo", "stars", "license", "forks"];
 
   constructor(public githubSearchService: GithubSearchService) { }
 
@@ -24,8 +26,9 @@ export class SearchComponent implements OnInit {
       this.search_repos = false;
     }
     this.githubSearchService.searchRepo(this.repo).subscribe(data => {
-      this.search_repos = data['items'];
-      // console.log(this.search_repos);
+      this.search_repos = data['items'] ;
+      this.dataSource = data['items'];
+       console.log(this.search_repos);
     });
   } // getRepo() ends
 }
