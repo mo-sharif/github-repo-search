@@ -5,8 +5,10 @@
     <div class="col-sm-12">
       <h1 class="mt-5 mb-5">Repository Search</h1>
       <form class="form-inline">
-        <input class="form-control col-sm-9 mr-5" type="search" placeholder="Enter keywords" name="repo" [(ngModel)]="repo">
-        <button class="btn btn-success col-sm-2 ml-4" type="submit" (click)="getRepo()">Search
+        <mat-form-field class="example-full-width">
+          <input matInput type="search" placeholder="Enter keywords" name="repo" [(ngModel)]="repo">
+        </mat-form-field>
+        <button mat-button color="primary" type="submit" (click)="getRepo()">Search
         </button>
       </form>
     </div>

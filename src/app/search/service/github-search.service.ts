@@ -19,15 +19,9 @@ export class GithubSearchService {
     this.reponame = reponame;
 
     // tslint:disable-next-line:max-line-length
-    return this._http.get(this.search_url + this.reponame +  '&client_id=' + this.client_id + '&client_secret=' + this.client_secret + '&per_page=5');
+    //return this._http.get(this.search_url + this.reponame +  '&client_id=' + this.client_id + '&client_secret=' + this.client_secret + '&per_page=5');
+    return this._http.get(`${this.search_url}${this.reponame}&client_id${this.client_id}&client_secret=${this.client_secret}&per_page=5`);
   } // searchRepo() ends
 
-
-  getRepos(username: string) {
-    this.username = username;
-
-    // tslint:disable-next-line:max-line-length
-    return this._http.get(this.url + this.username + '/repos' + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret + '&per_page=8' + '&sort=updated');
-  } // getRepos() ends
 
 }
