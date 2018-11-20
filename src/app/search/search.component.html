@@ -1,0 +1,52 @@
+<div class="container">
+
+  <!-- SEARCH GITHUB REPOSITORIES -->
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="mt-5 mb-5">Repository Search</h1>
+      <form class="form-inline">
+        <input class="form-control col-sm-9 mr-5" type="search" placeholder="Enter keywords" name="repo" [(ngModel)]="repo">
+        <button class="btn btn-success col-sm-2 ml-4" type="submit" (click)="getRepo()">Search
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="search_repos">
+    <div class="mt-3">
+      <div *ngFor="let repos of search_repos">
+        <div class="card mb-3">
+          <!-- card-header -->
+          <div class="card-header">
+            {{ repos.full_name }}
+          </div>
+          <!-- card-body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <strong>Created by: </strong>{{ repos.owner.login }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Last updated at: </strong>{{ repos.updated_at | date:'mediumDate' }}
+                  </li>
+                  <li class="list-group-item">
+                    <a href="{{ repos.owner.html_url }}" target="_blank">User Profile</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a href="{{ repos.html_url }}">Repo Link</a>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Forks: </strong>{{ repos.forks }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- /.card-body -->
+
+        </div><!-- /.card -->
+      </div><!--  *ngFor -->
+    </div><!-- /.col-sm-12 -->
+  </div><!-- *ngIf="search_repos" -->
+</div>
